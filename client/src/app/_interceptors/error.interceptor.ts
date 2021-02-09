@@ -23,18 +23,18 @@ export class ErrorInterceptor implements HttpInterceptor {
             case 400:
               if (error.error.errors) {
                 const modalStateErrors = [];
-                // var errorMesages = '';
+                var errorMesages = '';
                 for (const key in error.error.errors) {
                   if (error.error.errors[key]) {
-                    // for (let entry of error.error.errors[key]) {
-                    //   errorMesages += entry;
-                    // }                      
+                    for (let entry of error.error.errors[key]) {
+                    errorMesages += entry;
+                    this.toastr.error(entry, error.status);
+                    }                      
                   }                  
                 }
-                // this.toastr.error(errorMesages, error.status);
                 throw modalStateErrors.flat();
               } else {
-                this.toastr.error('Bas request', error.status);
+                this.toastr.error(error.error, error.status);
               }              
               break; 
             case 401: 

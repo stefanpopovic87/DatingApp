@@ -27,8 +27,8 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
-    this.toastr.success("Successfully logged out!");
     this.router.navigateByUrl('/');
+    this.toastr.success("Successfully logged out!");
   }
 
 }
